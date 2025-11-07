@@ -125,7 +125,9 @@ export class OmadaClient {
     }
 
     try {
-      const logoutEndpoint = this.omadacId ? `/${this.omadacId}/api/v2/logout` : '/api/v2/login';
+      const logoutEndpoint = this.omadacId
+        ? `/${this.omadacId}/api/v2/logout`
+        : '/api/v2/logout';
 
       await this.axiosInstance.post(logoutEndpoint);
     } catch (error) {

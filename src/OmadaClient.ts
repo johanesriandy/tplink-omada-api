@@ -112,7 +112,7 @@ export class OmadaClient {
     } catch (error) {
       // If getting controller info fails, we'll try login without omadacId
       // Some versions of Omada might not require this
-      console.warn('Could not get controller info, will attempt login without omadacId');
+      // Silently continue as this is not a critical error
     }
   }
 
@@ -131,7 +131,7 @@ export class OmadaClient {
 
       await this.axiosInstance.post(logoutEndpoint);
     } catch (error) {
-      console.error('Error during logout:', error);
+      // Silently handle logout errors - token will be cleared anyway
     } finally {
       this.token = null;
       delete this.axiosInstance.defaults.headers.common['Csrf-Token'];
